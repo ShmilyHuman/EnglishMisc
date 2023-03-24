@@ -1,5 +1,5 @@
 /* global api */
-class builtin_encn_Collins {
+class CollinsEN {
     constructor(options) {
         this.options = options;
         this.maxexample = 2;
@@ -7,8 +7,9 @@ class builtin_encn_Collins {
     }
 
     async displayName() {
-        return 'Collins';
+        return 'CollinsCN';
     }
+
 
     setOptions(options) {
         this.options = options;
@@ -69,7 +70,7 @@ class builtin_encn_Collins {
             let pos = def.pos_en;
             let eng_tran = def.def_en;
             pos = pos ? `<span class="pos">${pos}</span>` : '';
-            eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>` : '';
+            eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span>` : '';
             definition = `${pos}<span class="tran">${eng_tran}</span>`;
 
             // make exmaple sentence segement
@@ -77,7 +78,7 @@ class builtin_encn_Collins {
                 definition += '<ul class="sents">';
                 for (const [idx, ex] of def.ext.entries()) {
                     if (idx > maxexample - 1) break; // to control only n example sentences defined in option.
-                    let eng_sent = ex.ext_en.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`);
+                    let eng_sent = ex.ext_en.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`);
                     definition += `<li class='sent'><span class='eng_sent'>${eng_sent}</span></li>`;
                 }
                 definition += '</ul>';
@@ -102,12 +103,13 @@ class builtin_encn_Collins {
     renderCSS() {
         let css = `
             <style>
+                div.phrasehead{margin: 2px 0;font-weight: bold;}
                 span.star {color: #FFBB00;}
-                span.cet  {margin: 0 3px;padding: 0 3px;font-weight: normal;font-size: 0.8em;color: white;background-color: #5cb85c;border-radius: 3px;}
-                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
+                span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-                ul.sents {font-size:0.8em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
+		span.cloze {font-weight: bold;}
+                ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
                 li.sent  {margin:0; padding:0;}
                 span.eng_sent {margin-right:5px;}
             </style>`;
