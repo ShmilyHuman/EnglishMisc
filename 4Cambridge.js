@@ -55,7 +55,7 @@ class Cambridge {
             if (readings) {
                 let reading_uk = T(readings[0]);
                 let reading_us = T(readings[1]);
-                reading = (reading_uk || reading_us) ? `UK/${reading_uk}/ US/${reading_us}/ ` : '';
+                reading = (reading_uk || reading_us) ? `UK[${reading_uk}] US[${reading_us}] ` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
@@ -85,9 +85,11 @@ class Cambridge {
                     // make definition segement
                     for (const defblock of defblocks) {
                         let eng_tran = T(defblock.querySelector('.ddef_h .def'));
+                        let chn_tran = T(defblock.querySelector('.def-body .trans'));
                         if (!eng_tran) continue;
                         let definition = '';
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>`;
+                        chn_tran = `<span class='chn_tran'>${chn_tran}</span>`;
                         let tran = `<span class='tran'>${eng_tran}${chn_tran}</span>`;
                         definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
@@ -98,7 +100,8 @@ class Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</li>`;
+                                let chn_examp = T(examp.querySelector('.trans'));
+                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span><span class='chn_sent'>${chn_examp}</span></li>`;
                             }
                             definition += '</ul>';
                         }
