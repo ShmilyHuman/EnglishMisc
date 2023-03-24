@@ -97,7 +97,7 @@ class Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}`;
+                                definition += `<li class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span></li>`)}`;
                             }
                             definition += '</div>';
                         }
@@ -127,8 +127,8 @@ class Cambridge {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
 		span.cloze {font-weight: 700;}
-                div.sents {font-size:0.9em; margin-left: 1.3em; margin-right:5px; display: list-item;}
-                div.eng_sent {margin-right:5px; display: list-item;}
+                div.sents {font-size:0.9em; margin-left: 1.3em; margin-right:5px}
+                li.eng_sent {margin-right:5px; display: list-item;}
             </style>`;
         return css;
     }
