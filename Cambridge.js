@@ -55,7 +55,7 @@ class Cambridge {
             if (readings) {
                 let reading_uk = T(readings[0]);
                 let reading_us = T(readings[1]);
-                reading = (reading_uk || reading_us) ? `/${reading_us}/` : '';
+                reading = (reading_uk || reading_us) ? `/${reading_us}/ ` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
@@ -89,18 +89,18 @@ class Cambridge {
                         let definition = '';
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span>`;
                         let tran = `<span class='tran'>${eng_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}: ${tran}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
-                            definition += '<ul class="sents">';
+                            definition += '<div class="sents">';
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span></li>`;
+                                definition += `<div class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span></div>`;
                             }
-                            definition += '</ul>';
+                            definition += '</div>';
                         }
                         definition && definitions.push(definition);
                     }
@@ -127,9 +127,9 @@ class Cambridge {
                 span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-		        span.cloze {font-weight: 700; color: #00aa00;}
-                ul.sents {font-size:0.9em; :square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
-                li.sent  {margin:0; padding:0;}
+		span.cloze {font-weight: 700; color: #00aa00;}
+                div.sents {font-size:0.9em; list style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
+                div.sent  {margin:0; padding:0;}
                 span.eng_sent {margin-right:5px;}
             </style>`;
         return css;
