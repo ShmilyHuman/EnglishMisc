@@ -7,6 +7,7 @@ class Cambridge {
     }
 
     async displayName() {
+        let locale = await api.locale();
         return 'Cambridge';
     }
 
@@ -17,7 +18,7 @@ class Cambridge {
 
     async findTerm(word) {
         this.word = word;
-        let promises = [this.findCambridge(word)];
+        let promises = [this.findCambridge(word), this.findYoudao(word)];
         let results = await Promise.all(promises);
         return [].concat(...results).filter(x => x);
     }
@@ -33,7 +34,7 @@ class Cambridge {
                 return node.innerText.trim();
         }
 
-        let base = 'https://dictionary.cambridge.org/search/english/?q=';
+        let base = 'https://dictionary.cambridge.org/search/english-chinese-simplified/direct/?q=';
         let url = base + encodeURIComponent(word);
         let doc = '';
         try {
