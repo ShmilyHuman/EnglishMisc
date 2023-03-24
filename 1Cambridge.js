@@ -127,8 +127,7 @@ class Cambridge {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
 		span.cloze {font-weight: 700;}
-                div.sents {font-size:0.9em; margin-left: 1.3em; background-color: #e0fdfd;}
-                div.sent  {display: list-item;}
+                div.sents {font-size:0.9em; margin-left: 1.3em;}
                 div.eng_sent {margin-right:5px; display: list-item;}
             </style>`;
         return css;
