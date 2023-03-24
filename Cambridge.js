@@ -55,7 +55,7 @@ class Cambridge {
             if (readings) {
                 let reading_uk = T(readings[0]);
                 let reading_us = T(readings[1]);
-                reading = (reading_uk || reading_us) ? `/${reading_us}/ ` : '';
+                reading = (reading_uk || reading_us) ? `/${reading_us}/` : '/${reading_uk}/';
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
@@ -89,7 +89,7 @@ class Cambridge {
                         let definition = '';
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span>`;
                         let tran = `<span class='tran'>${eng_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}: ${tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
@@ -98,7 +98,7 @@ class Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<span class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span></span>`;
+                                definition += `<div class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span></div>`;
                             }
                             definition += '</div>';
                         }
@@ -129,7 +129,7 @@ class Cambridge {
                 span.eng_tran {margin-right:3px; padding:0;}
 		span.cloze {font-weight: 700; color: #00aa00;}
                 div.sents {font-size:0.9em; margin-left: 1.3em; display: list-item;}
-                span.sent  {margin:0; padding:0;}
+                div.sent  {margin:0; padding:0;}
                 span.eng_sent {margin-right:5px;}
             </style>`;
         return css;
