@@ -7,7 +7,6 @@ class Cambridge {
     }
 
     async displayName() {
-        let locale = await api.locale();
         return 'Cambridge';
     }
 
