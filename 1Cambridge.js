@@ -53,9 +53,8 @@ class Cambridge {
             let reading = '';
             let readings = entry.querySelectorAll('.pron .ipa');
             if (readings) {
-                let reading_uk = T(readings[0]);
                 let reading_us = T(readings[1]);
-                reading = (reading_uk || reading_us) ? `/${reading_us}/` : '/${reading_uk}/';
+                reading = (reading_us) ? `/${reading_us}/` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
@@ -128,8 +127,8 @@ class Cambridge {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
 		span.cloze {font-weight: 700; color: #00aa00;}
-                div.sents {font-size:0.9em; margin-left: 1.3em; display: list-item;}
-                div.sent  {margin:0; padding:0;}
+                div.sents {font-size:0.9em; margin-left: 1.3em; background-color: #e0fdfd;}
+                div.sent  {display: list-item;}
                 span.eng_sent {margin-right:5px;}
             </style>`;
         return css;
