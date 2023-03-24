@@ -55,7 +55,7 @@ class Cambridge {
             if (readings) {
                 let reading_uk = T(readings[0]);
                 let reading_us = T(readings[1]);
-                reading = (reading_uk || reading_us) ? `${reading_us}` : '';
+                reading = (reading_uk || reading_us) ? `/${reading_us}/` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
             pos = pos ? `<span class='pos'>${pos}</span>` : '';
@@ -89,7 +89,7 @@ class Cambridge {
                         let definition = '';
                         eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span>`;
                         let tran = `<span class='tran'>${eng_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}: ${tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
@@ -118,6 +118,7 @@ class Cambridge {
         return notes;
     }
 
+
     renderCSS() {
         let css = `
             <style>
@@ -126,7 +127,7 @@ class Cambridge {
                 span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-		span.cloze {font-weight: 700; color: #5caf9e;}
+		        span.cloze {font-weight: 700; color: #00aa00;}
                 ul.sents {font-size:0.9em; :square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
                 li.sent  {margin:0; padding:0;}
                 span.eng_sent {margin-right:5px;}
