@@ -90,14 +90,13 @@ class Cambridge {
                         let tran = `<span class='tran'>${eng_tran}</span>`;
                         definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
-                        // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
                             definition += '<ul class="sents">';
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class='sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span></li>`)}`;
+                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span></li>`;
                             }
                             definition += '</ul>';
                         }
@@ -127,8 +126,9 @@ class Cambridge {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
 		span.cloze {font-weight: 700;}
-                ul.sents {font-size:0.9em;}
-                li.sent {margin-right:5px;}
+                ul.sents {font-size:0.8em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
+                li.sent  {margin:0; padding:0;}
+                span.eng_sent {margin-right:5px;}
             </style>`;
         return css;
     }
