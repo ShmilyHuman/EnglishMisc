@@ -93,13 +93,13 @@ class Cambridge {
                         // make exmaple segement
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
-                            definition += '<div class="sents">';
+                            definition += '<ul class="sents">';
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span></li>`)}`;
+                                definition += `<li class='sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span></li>`)}`;
                             }
-                            definition += '</div>';
+                            definition += '</ul>';
                         }
                         definition && definitions.push(definition);
                     }
@@ -127,8 +127,8 @@ class Cambridge {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
 		span.cloze {font-weight: 700;}
-                div.sents {font-size:0.9em; margin-left: 1.3em; margin-right:5px}
-                li.eng_sent {margin-right:5px; display: list-item;}
+                ul.sents {font-size:0.9em;}
+                li.sent {margin-right:5px;}
             </style>`;
         return css;
     }
