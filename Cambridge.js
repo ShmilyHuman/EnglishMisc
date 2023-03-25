@@ -73,7 +73,7 @@ class Cambridge {
                     let defblocks = [];
                     if (sensblock.classList && sensblock.classList.contains('phrase-block')) {
                         phrasehead = T(sensblock.querySelector('.phrase-title'));
-                        phrasehead = phrasehead ? `<div class="phrasehead">${phrasehead}</div>` : '';
+                        phrasehead = phrasehead ? `<div class="cloze">${phrasehead}</div>` : '';
                         defblocks = sensblock.querySelectorAll('.def-block') || [];
                     }
                     if (sensblock.classList && sensblock.classList.contains('def-block')) {
@@ -86,7 +86,7 @@ class Cambridge {
                         let eng_tran = T(defblock.querySelector('.ddef_h .def'));
                         if (!eng_tran) continue;
                         let definition = '';
-                        eng_tran = `<span class='eng_tran'>${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span>`;
+                        eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}`;
                         let tran = `<span class='tran'>${eng_tran}</span>`;
                         definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
@@ -96,7 +96,7 @@ class Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class='sent'><span class='eng_sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</span></li>`;
+                                definition += `<li class='sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}</li>`;
                             }
                             definition += '</ul>';
                         }
@@ -106,6 +106,7 @@ class Cambridge {
             }
             let css = this.renderCSS();
             notes.push({
+                css,
                 expression,
                 reading,
                 definitions,
