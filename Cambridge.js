@@ -88,7 +88,7 @@ class Cambridge {
                         let definition = '';
                         eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}`;
                         let tran = `<span class='tran'>${eng_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `{pos}${tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
