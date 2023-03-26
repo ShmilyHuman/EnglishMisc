@@ -106,10 +106,10 @@ class Cambridge {
             }
             let css = this.renderCSS();
             notes.push({
+                css,
                 expression,
                 reading,
                 definitions,
-                css,
                 audios
             });
         }
