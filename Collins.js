@@ -1,5 +1,5 @@
 /* global api */
-class CollinsEN {
+class Collins {
     constructor(options) {
         this.options = options;
         this.maxexample = 2;
@@ -104,12 +104,9 @@ class CollinsEN {
         let css = `
             <style>
                 span.star {color: #FFBB00;}
-                span.cet  {margin: 0 3px;padding: 0 3px;font-weight: normal;font-size: 0.8em;color: white;background-color: #5cb85c;border-radius: 3px;}
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
-                span.tran {margin:0; padding:0;}
-                .cloze {color: #1d4ed8; font-weight: 700;}
+                .cloze {color: #0d47a1; font-weight: 700;}
                 ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
-                li.sent  {margin:0; padding:0;}
             </style>`;
         return css;
     }
