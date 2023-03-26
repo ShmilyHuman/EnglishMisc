@@ -96,9 +96,8 @@ class Oxford {
                 if (!expression) return [];
 
                 let symbols = simple.symbols[0];
-                let reading_uk = symbols.ph_en || '';
                 let reading_us = symbols.ph_am || '';
-                let reading = reading_uk && reading_us ? `uk[${reading_uk}] us[${reading_us}]` : '';
+                let reading = reading_us ? `/${reading_us}/` : '';
 
                 let audios = [];
                 audios[0] = `https://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
