@@ -57,7 +57,7 @@ class Cambridge {
                 reading = (reading_us) ? `/${reading_us}/` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
-            pos = pos ? `&nbsp;<span class='pos'>${pos}</span>` : '';
+            pos = pos ? `‣<span class='pos'>${pos}</span>` : '';
             audios[0] = entry.querySelector(".uk.dpron-i source");
             audios[0] = audios[0] ? 'https://dictionary.cambridge.org' + audios[0].getAttribute('src') : '';
             //audios[0] = audios[0].replace('https', 'http');
@@ -87,7 +87,7 @@ class Cambridge {
                         if (!eng_tran) continue;
                         let definition = '';
                         eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}`;
-                        let tran = `<span class='tran'>${eng_tran}</span>`;
+                        let tran = `&nbsp;<span class='tran'>${eng_tran}</span>`;
                         definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
@@ -120,11 +120,9 @@ class Cambridge {
     renderCSS() {
         let css = `
             <style>
-                span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
-                span.tran {margin:0; padding:0;}
+                span.pos  {font-size:0.9em; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 .cloze {font-weight: 700;}
-                ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
-                li.sent  {margin:0; padding:0;}
+                ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0; padding:5px; background:rgba(13,71,161,0.1); border-radius:5px;}
             </style>`;
         return css;
     }
