@@ -83,61 +83,10 @@ class Oxford {
         try {
             data = JSON.parse(await api.fetch(dicturl));
             let oxford = getOxford(data);
-            let bdsimple = oxford.length ? [] : getBDSimple(data); //Combine Youdao Concise English-Chinese Dictionary to the end.
-            let bstrans = oxford.length || bdsimple.length ? [] : getBDTrans(data); //Combine Youdao Translation (if any) to the end.
-            return [].concat(oxford, bdsimple, bstrans);
+            return [].concat(oxford);
 
         } catch (err) {
             return [];
-        }
-
-        function getBDTrans(data) {
-            try {
-                if (data.dict_result && data.dict_result.length != 0) return [];
-                if (!data.trans_result || data.trans_result.data.length < 1) return [];
-                let css = '<style>.odh-expression {font-size: 1em!important;font-weight: normal!important;}</style>';
-                let expression = data.trans_result.data[0].src;
-                let definition = data.trans_result.data[0].dst;
-                return [{ css, expression, definitions: [definition] }];
-            } catch (error) {
-                return [];
-            }
-        }
-
-        function getBDSimple(data) {
-            try {
-                let simple = data.dict_result.simple_means;
-                let expression = simple.word_name;
-                if (!expression) return [];
-
-                let symbols = simple.symbols[0];
-                let reading_uk = symbols.ph_en || '';
-                let reading_us = symbols.ph_am || '';
-                let reading = reading_uk && reading_us ? `uk/${reading_uk}/ us/${reading_us}/` : '';
-
-                let audios = [];
-                audios[0] = `https://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
-                audios[1] = `https://fanyi.baidu.com/gettts?lan=en&text=${encodeURIComponent(expression)}&spd=3&source=web`;
-
-                if (!symbols.parts || symbols.parts.length < 1) return [];
-                let definition = '<ul class="ec">';
-                for (const def of symbols.parts)
-                    if (def.means && def.means.length > 0) {
-                        let pos = def.part || def.part_name || '';
-                        pos = pos ? `<span class="pos simple">${pos}</span>` : '';
-                        definition += `<li class="ec">${pos}${def.means.join()}</li>`;
-                    }
-                definition += '</ul>';
-                let css = `<style>
-                ul.ec, li.ec {margin:0; padding:0;}
-                span.simple {background-color: #999!important}
-                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
-                </style>`;
-                notes.push({ css, expression, reading, definitions: [definition], audios });
-                return notes;
-            } catch (error) {
-                return [];
-            }
         }
 
         function getOxford(data) {
@@ -196,7 +145,7 @@ class Oxford {
                         }
                     }
                 }
-                let css = encn_Oxford.renderCSS();
+                let css = Oxford.renderCSS();
                 notes.push({ css, expression, reading, definitions, audios });
                 return notes;
             } catch (error) {
