@@ -73,7 +73,7 @@ class Cambridge {
                     let defblocks = [];
                     if (sensblock.classList && sensblock.classList.contains('phrase-block')) {
                         phrasehead = T(sensblock.querySelector('.phrase-title'));
-                        phrasehead = phrasehead ? `<div class='phrase' style='color:#aa5500; font-weight:700'>📃${phrasehead}</div>` : '';
+                        phrasehead = phrasehead ? `<div class="phrase" style="color:#aa5500; font-weight:700">📃${phrasehead}</div>` : '';
                         defblocks = sensblock.querySelectorAll('.def-block') || [];
                     }
                     if (sensblock.classList && sensblock.classList.contains('def-block')) {
@@ -86,17 +86,17 @@ class Cambridge {
                         let eng_tran = T(defblock.querySelector('.ddef_h .def'));
                         if (!eng_tran) continue;
                         let definition = '';
-                        eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze' style='font-weight:700'>${expression}</span>`)}`;
-                        let tran = `<span class='tran'>${eng_tran}</span>`;
+                        eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class="cloze" style="font-weight:700">${expression}</span>`)}`;
+                        let tran = `<span class="tran">${eng_tran}</span>`;
                         definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
-                            definition += '<ul class='sents' style='{font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}'>';
+                            definition += '<ul class="sents" style="{font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}">';
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class='sent'>${eng_examp.replace(RegExp(expression, 'gi'),`<span class='cloze' style='font-weight:700'>${expression}</span>`)}</li>`;
+                                definition += `<li class="sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="cloze" style="font-weight:700">${expression}</span>`)}</li>`;
                             }
                             definition += '</ul>';
                         }
