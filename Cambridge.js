@@ -88,8 +88,8 @@ class Cambridge {
                         if (!eng_tran) continue;
                         let definition = '';
                         eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class="cloze" style="font-weight:700">${expression}</span>`)}`;
-                        let tran = `<span class="tran">${eng_tran}</span>`;
-                        definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
+                        let tran = `${eng_tran}`;
+                        definition += phrasehead ? `${phrasehead}${tran}` : `<span class="tran">${pos}${tran}</span>`;
 
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
@@ -121,7 +121,7 @@ class Cambridge {
     renderCSS() {
         let css = `
             <style>
-				.phrase {color:#aa5500; font-weight:700}
+		.phrase {color:#aa5500; font-weight:700}
                 span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 .cloze {font-weight: 700;}
                 ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
