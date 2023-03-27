@@ -59,7 +59,7 @@ class Collins {
         let extrainfo = result.star;
         let defs = result.defs;
 
-        extrainfo = extrainfo ? `<span class="star">${extrainfo}</span>` : '';
+        extrainfo = extrainfo ? `<span class="star" style="color: #FFBB00;">${extrainfo}</span>` : '';
         let audios = [];
         audios[0] = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(expression)}&type=1`;
         audios[1] = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(expression)}&type=2`;
@@ -69,16 +69,16 @@ class Collins {
             let definition = '';
             let pos = def.pos_en;
             let eng_tran = def.def_en;
-            pos = pos ? `<span class="pos">${pos}</span>` : '';
-            eng_tran = eng_tran ? `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`)}` : '';
-            definition = `${pos}<span class="tran">${eng_tran}</span>`;
+            pos = pos ? `<span class="pos" style="text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
+            eng_tran = eng_tran ? `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze' style="font-weight:700;">${expression}</span>`)}` : '';
+            definition = `<span class="tran">${pos}${eng_tran}</span>`;
 
             // make exmaple sentence segement
             if (def.ext && def.ext.length > 0 && maxexample > 0) {
-                definition += '<ul class="sents">';
+                definition += '<ul class="sents" style="font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;">';
                 for (const [idx, ex] of def.ext.entries()) {
                     if (idx > maxexample - 1) break; // to control only n example sentences defined in option.
-                    let eng_sent = ex.ext_en.replace(RegExp(expression, 'gi'),`<span class='cloze'>${expression}</span>`);
+                    let eng_sent = ex.ext_en.replace(RegExp(expression, 'gi'),`<span class='cloze' style="font-weight:700;">${expression}</span>`);
                     definition += `<li class='sent'>${eng_sent}</li>`;
                 }
                 definition += '</ul>';
