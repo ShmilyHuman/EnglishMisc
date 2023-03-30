@@ -97,7 +97,7 @@ class Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class="sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}<b></span>`)}</li>`;
+                                definition += `<li class="sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}</b></span>`)}</li>`;
                             }
                             definition += '</ul>';
                         }
