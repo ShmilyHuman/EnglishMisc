@@ -74,7 +74,7 @@ class Cambridge {
                     let defblocks = [];
                     if (sensblock.classList && sensblock.classList.contains('phrase-block')) {
                         phrasehead = T(sensblock.querySelector('.phrase-title'));
-                        phrasehead = phrasehead ? `📃<span class="cloze" style="color:#aa5500; font-weight:700">${phrasehead}</span>:` : '';
+                        phrasehead = phrasehead ? `📃<span class="cloze" style="color:#aa5500;"><b>${phrasehead}</b></span>:` : '';
                         defblocks = sensblock.querySelectorAll('.def-block') || [];
                     }
                     if (sensblock.classList && sensblock.classList.contains('def-block')) {
@@ -87,7 +87,7 @@ class Cambridge {
                         let eng_tran = T(defblock.querySelector('.ddef_h .def'));
                         if (!eng_tran) continue;
                         let definition = '';
-                        eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class="cloze" style="font-weight:700">${expression}</span>`)}`;
+                        eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}</b></span>`)}`;
                         let tran = `${eng_tran}`;
                         definition += phrasehead ? `<span class="tran">${phrasehead}${tran}</span>` : `<span class="tran">${pos}${tran}</span>`;
 
@@ -97,7 +97,7 @@ class Cambridge {
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class="sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="cloze" style="font-weight:700">${expression}</span>`)}</li>`;
+                                definition += `<li class="sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}<b></span>`)}</li>`;
                             }
                             definition += '</ul>';
                         }
