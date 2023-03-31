@@ -89,7 +89,6 @@ class Collins {
 
         let css = this.renderCSS();
         notes.push({
-            css,
             expression,
             reading,
             extrainfo,
