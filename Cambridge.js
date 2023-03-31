@@ -74,7 +74,7 @@ class Cambridge {
                     let defblocks = [];
                     if (sensblock.classList && sensblock.classList.contains('phrase-block')) {
                         phrasehead = T(sensblock.querySelector('.phrase-title'));
-                        phrasehead = phrasehead ? `📃<span class="cloze" style="color:#aa5500;"><b>${phrasehead}</b></span>:` : '';
+                        phrasehead = phrasehead ? `📃<span class="cloze" style="color:#aa5500;"><b>${phrasehead}</b></span>: ` : '';
                         defblocks = sensblock.querySelectorAll('.def-block') || [];
                     }
                     if (sensblock.classList && sensblock.classList.contains('def-block')) {
