@@ -119,7 +119,12 @@ class Cambridge {
 
     renderCSS() {
         let css = `
-            <style></style>`;
+            <style>
+		.phrase {color:#aa5500; font-weight:700}
+                span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
+                .cloze {font-weight: 700;}
+                ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
+            </style>`;
         return css;
     }
 }
