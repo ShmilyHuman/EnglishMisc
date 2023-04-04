@@ -58,7 +58,7 @@ class Cambridge {
                 reading = reading_us ? `/${reading_us}/` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
-            pos = pos ? `<span class='pos' id='pos' style="font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
+            pos = pos ? `<span class='pos' style="font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
             audios[0] = entry.querySelector(".uk.dpron-i source");
             audios[0] = audios[0] ? 'https://dictionary.cambridge.org' + audios[0].getAttribute('src') : '';
             //audios[0] = audios[0].replace('https', 'http');
@@ -89,7 +89,7 @@ class Cambridge {
                         let definition = '';
                         eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}</b></span>`)}`;
                         let tran = `${eng_tran}`;
-                        definition += phrasehead ? `<span class="tran">${phrasehead}${tran}</span>` : `<span class="tran">${pos}${tran}</span>`;
+                        definition += phrasehead ? `<span class="tran">${phrasehead}${tran}</span>` : `&nbsp<span class="tran">${pos}${tran}</span>`;
 
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
