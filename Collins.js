@@ -69,9 +69,9 @@ class Collins {
             let definition = '';
             let pos = def.pos_en;
             let eng_tran = def.def_en;
-            pos = pos ? `<span class="pos" id="pos" style="text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
+            pos = pos ? `<span class="pos" style="text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
             eng_tran = eng_tran ? `${eng_tran.replace(RegExp(expression, 'gi'),`<span class='cloze'><b>${expression}</b></span>`)}` : '';
-            definition = `<span class="tran">${pos}${eng_tran}</span>`;
+            definition = `&nbsp<span class="tran">${pos}${eng_tran}</span>`;
 
             // make exmaple sentence segement
             if (def.ext && def.ext.length > 0 && maxexample > 0) {
