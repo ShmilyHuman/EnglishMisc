@@ -47,16 +47,16 @@ class Oxford {
             let sentence = '';
             let sentnum = 0;
             for (const def of defs) {
-                if (def.text) definition += `<span class='def'>${def.text}</span>`;
+                if (def.text) definition += `<span class='tran'>${def.text}</span>`;
                 if (def.tag == 'id' || def.tag == 'pv')
                     definition += def.enText ? `<div class="idmphrase">${def.enText}</div>` : '';
                 //if (def.tag == 'xrs')
-                //    definition += `<span class='def'>${def.data[0].data[0].text}</span>`;
+                //    definition += `<span class='tran'>${def.data[0].data[0].text}</span>`;
                 if (def.tag == 'd' || def.tag == 'ud')
-                    definition += pos + `<span class='def'>${def.enText}</span>`;
+                    definition += pos + `<span class='tran'>${def.enText}</span>`;
                 if (def.tag == 'x' && sentnum < maxexample) {
                     sentnum += 1;
-                    let enText = def.enText.replace(RegExp(exp, 'gi'), `<span class='cloze' style='font-weight:700'>${exp}</span>`);
+                    let enText = def.enText.replace(RegExp(exp, 'gi'), `<b>${exp}</b>`);
                     sentence += `<li class='sent'>${enText}</li>`;
                 }
             }
@@ -116,7 +116,7 @@ class Oxford {
                                 pos = `<span class='pos'>${group.p_text}</span>`;
                             }
                             if (group.tag == 'd') {
-                                definition += pos + `<span class='def'>${group.enText}</span>`;
+                                definition += pos + `<span class='tran'>${group.enText}</span>`;
                                 definitions.push(definition);
                             }
 
@@ -165,7 +165,7 @@ class Oxford {
                 div.idmphrase {font-weight: bold;margin: 0;padding: 0;}
                 span.eng_dis  {margin-right: 5px;}
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
-                span.def {margin:0; padding:0;}
+                span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
                 ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
                 li.sent  {margin:0; padding:0;}
