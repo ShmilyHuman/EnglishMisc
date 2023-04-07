@@ -113,7 +113,7 @@ class Oxford {
                         for (const group of entry.data) {
                             let definition = '';
                             if (group.tag == 'p') {
-                                pos = `<span class='1pos'>${group.p_text}</span>`;
+                                pos = `<span class='pos'>${group.p_text}</span>`;
                             }
                             if (group.tag == 'd') {
                                 definition += pos + `<span class='def'>${group.enText}</span>`;
