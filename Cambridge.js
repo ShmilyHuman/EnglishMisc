@@ -58,7 +58,7 @@ class Cambridge {
                 reading = reading_us ? `/${reading_us}/` : '';
             }
             let pos = T(entry.querySelector('.posgram'));
-            pos = pos ? `<span class='1pos' style="font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
+            pos = pos ? `<span class='pos' style="font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">${pos}</span>` : '';
             audios[0] = entry.querySelector(".uk.dpron-i source");
             audios[0] = audios[0] ? 'https://dictionary.cambridge.org' + audios[0].getAttribute('src') : '';
             //audios[0] = audios[0].replace('https', 'http');
@@ -74,7 +74,7 @@ class Cambridge {
                     let defblocks = [];
                     if (sensblock.classList && sensblock.classList.contains('phrase-block')) {
                         phrasehead = T(sensblock.querySelector('.phrase-title'));
-                        phrasehead = phrasehead ? `<span class='1pos' style="font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">phrase</span><span class="1cloze" style="color:#aa5500;"><b>${phrasehead}</b></span>: ` : '';
+                        phrasehead = phrasehead ? `<span class='pos' style="font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;">phrase</span><span class="cloze" style="color:#aa5500;"><b>${phrasehead}</b></span>: ` : '';
                         defblocks = sensblock.querySelectorAll('.def-block') || [];
                     }
                     if (sensblock.classList && sensblock.classList.contains('def-block')) {
@@ -89,15 +89,15 @@ class Cambridge {
                         let definition = '';
                         eng_tran = `${eng_tran.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}</b></span>`)}`;
                         let tran = `${eng_tran}`;
-                        definition += phrasehead ? `${phrasehead}<span class="1def">${tran}</span>` : `${pos}<span class="1def">${tran}</span>`;
+                        definition += phrasehead ? `${phrasehead}<span class="def">${tran}</span>` : `${pos}<span class="def">${tran}</span>`;
 
                         let examps = defblock.querySelectorAll('.def-body .examp') || [];
                         if (examps.length > 0 && this.maxexample > 0) {
-                            definition += '<ul class="1sents" style="font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;">';
+                            definition += '<ul class="sents" style="font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;">';
                             for (const [index, examp] of examps.entries()) {
                                 if (index > this.maxexample - 1) break; // to control only 2 example sentence.
                                 let eng_examp = T(examp.querySelector('.eg'));
-                                definition += `<li class="1sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="1cloze"><b>${expression}</b></span>`)}</li>`;
+                                definition += `<li class="sent">${eng_examp.replace(RegExp(expression, 'gi'),`<span class="cloze"><b>${expression}</b></span>`)}</li>`;
                             }
                             definition += '</ul>';
                         }
@@ -120,10 +120,10 @@ class Cambridge {
     renderCSS() {
         let css = `
             <style>
-		.1phrase {color:#aa5500; font-weight:700}
-                span.1pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
-                .1cloze {font-weight: 700;}
-                ul.1sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
+		.phrase {color:#aa5500; font-weight:700}
+                span.pos  {font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
+                .cloze {font-weight: 700;}
+                ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
             </style>`;
         return css;
     }
